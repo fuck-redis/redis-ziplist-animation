@@ -1,0 +1,114 @@
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 140px); /* Header高度约140px */
+  overflow: hidden;
+}
+
+.demo-header {
+  flex-shrink: 0;
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  background: white;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.demo-title-section {
+  flex: 1;
+}
+
+.demo-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.demo-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.show-guide-btn {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+  white-space: nowrap;
+}
+
+.show-guide-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.layout-container {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  overflow: hidden;
+}
+
+.visualization-section {
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.control-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  overflow-y: auto;
+  padding-right: var(--spacing-xs);
+}
+
+/* 滚动条样式 */
+.control-section::-webkit-scrollbar {
+  width: 6px;
+}
+
+.control-section::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.control-section::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+.control-section::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+@media (max-width: 1200px) {
+  .layout-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .control-section {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    padding: var(--spacing-md);
+  }
+}

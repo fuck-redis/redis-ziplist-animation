@@ -1,0 +1,240 @@
+.beginner-guide-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.beginner-guide-modal {
+  background: white;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.guide-header {
+  padding: var(--spacing-lg);
+  border-bottom: 2px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.guide-progress {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex: 1;
+}
+
+.progress-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.progress-dot.active {
+  background: var(--primary-color);
+  transform: scale(1.3);
+}
+
+.progress-dot.completed {
+  background: #4caf50;
+}
+
+.guide-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  line-height: 1;
+  transition: all 0.2s;
+}
+
+.guide-close:hover {
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+.guide-content {
+  padding: var(--spacing-xxl);
+  flex: 1;
+  overflow-y: auto;
+}
+
+.guide-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+.guide-text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xl);
+}
+
+.guide-text p {
+  margin: var(--spacing-sm) 0;
+  white-space: pre-wrap;
+}
+
+.guide-highlight {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--primary-color);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.guide-image {
+  background: var(--bg-secondary);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.guide-footer {
+  padding: var(--spacing-lg);
+  border-top: 2px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.guide-step-info {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.guide-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.guide-btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.guide-btn-prev {
+  background: white;
+  color: var(--text-secondary);
+  border: 2px solid var(--border-color);
+}
+
+.guide-btn-prev:hover {
+  background: var(--bg-secondary);
+  border-color: var(--text-secondary);
+}
+
+.guide-btn-skip {
+  background: white;
+  color: var(--text-secondary);
+  border: 2px solid var(--border-color);
+}
+
+.guide-btn-skip:hover {
+  background: var(--bg-secondary);
+}
+
+.guide-btn-next {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-xl);
+}
+
+.guide-btn-next:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .beginner-guide-modal {
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  .guide-content {
+    padding: var(--spacing-lg);
+  }
+
+  .guide-title {
+    font-size: 24px;
+  }
+
+  .guide-text {
+    font-size: 16px;
+  }
+
+  .guide-highlight {
+    font-size: 16px;
+  }
+
+  .guide-footer {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .guide-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .guide-btn {
+    width: 100%;
+  }
+}

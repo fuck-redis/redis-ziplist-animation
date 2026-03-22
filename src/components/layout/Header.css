@@ -43,6 +43,30 @@
   border-left: 2px solid #334155;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.github-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #94a3b8;
+  border: 1px solid #334155;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.github-link:hover {
+  color: #f8fafc;
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.2);
+}
+
 .nav-menu {
   display: flex;
   gap: 6px;

@@ -1,0 +1,126 @@
+.header-fields-interactive {
+  background: #FFFFFF;
+  border-radius: 2px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.viz-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1E293B;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.viz-container {
+  display: flex;
+  justify-content: center;
+  background: #F8FAFC;
+  border-radius: 2px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.viz-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.field-detail-panel {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: #F8FAFC;
+  border-radius: 2px;
+  border-left: 2px solid #3B82F6;
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.detail-name {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Monaco', 'Menlo', monospace;
+  color: #1E293B;
+}
+
+.detail-type {
+  font-size: 13px;
+  color: #64748B;
+  font-family: 'Monaco', 'Menlo', monospace;
+  background: #E2E8F0;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.detail-desc {
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.detail-usage {
+  margin-bottom: 12px;
+}
+
+.detail-usage strong {
+  color: #1E293B;
+  font-size: 14px;
+}
+
+.detail-usage ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 8px 0 0 0;
+}
+
+.detail-usage li {
+  color: #475569;
+  font-size: 13px;
+  padding: 4px 0 4px 20px;
+  position: relative;
+}
+
+.detail-usage li::before {
+  content: "▸";
+  position: absolute;
+  left: 4px;
+  color: #3B82F6;
+}
+
+.detail-example {
+  background: #1E293B;
+  padding: 12px;
+  border-radius: 2px;
+}
+
+.detail-example strong {
+  color: #E2E8F0;
+  font-size: 13px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.detail-example code {
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 12px;
+  color: #10B981;
+  word-break: break-all;
+}

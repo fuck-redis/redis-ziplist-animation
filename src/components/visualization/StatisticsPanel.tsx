@@ -9,11 +9,10 @@ function StatisticsPanel({ zipListState }: StatisticsPanelProps) {
   const { header, entries, totalBytes } = zipListState;
 
   // 计算统计数据
-  const avgEntrySize = entries.length > 0 
+  const avgEntrySize = entries.length > 0
     ? (entries.reduce((sum, e) => sum + e.totalSize, 0) / entries.length).toFixed(2)
     : 0;
 
-  const headerBytes = 12;
   const entriesBytes = entries.reduce((sum, e) => sum + e.totalSize, 0);
   const memoryEfficiency = entries.length > 0
     ? ((entriesBytes / totalBytes) * 100).toFixed(1)

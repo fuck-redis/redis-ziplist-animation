@@ -14,6 +14,8 @@ import {
   OperationResult,
   EncodingDecision,
   CascadeUpdateInfo,
+  SearchResult,
+  AnimationStep,
 } from '@/types/ziplist';
 
 // ZipList常量
@@ -688,4 +690,329 @@ function encodeContent(content: string | number, encoding: EntryEncoding): numbe
     const bytes = new TextEncoder().encode(content);
     return Array.from(bytes);
   }
+}
+
+/**
+ * 更新节点值
+ * 可能触发编码变化和连锁更新
+ */
+export function updateEntry(
+  state: ZipListState,
+  position: number,
+  newValue: string | number,
+  params?: OperationParams
+): OperationResult {
+  // 验证位置
+  if (position < 0 || position >= state.entries.length) {
+    return {
+      success: false,
+      newState: state,
+      message: `无效的位置: ${position}`,
+      affectedEntries: [],
+    };
+  }
+
+  const oldEntry = state.entries[position];
+  const oldTotalSize = oldEntry.totalSize;
+
+  // 选择新编码
+  const encodingDecision = selectEncoding(newValue, params?.forceEncoding);
+  const newEncoding = encodingDecision.selectedEncoding;
+
+  // 计算新的内容大小
+  const newContentSize = getContentSize(newValue, newEncoding);
+  const encodingSize = getEncodingFieldSize(newEncoding);
+
+  // 计算新的节点总大小
+  // prevlen 字段大小可能因前置节点大小变化而变化
+  const prevEntrySize = position === 0 ? 0 : state.entries[position - 1].totalSize;
+  const newPrevlenSize = calculatePrevlenSize(prevEntrySize);
+  const newTotalSize = newPrevlenSize + encodingSize + newContentSize;
+
+  // 检查 prevlen 是否需要变化（由前置节点大小决定）
+  const prevlenChanged = oldEntry.prevlenSize !== newPrevlenSize;
+
+  // 创建新的 entries 数组
+  const newEntries = state.entries.map((entry, idx) => {
+    if (idx === position) {
+      return {
+        ...entry,
+        encoding: newEncoding,
+        encodingByte: encodingDecision.encodingByte,
+        content: newValue,
+        contentSize: newContentSize,
+        totalSize: newTotalSize,
+        isUpdating: true,
+      };
+    }
+    return entry;
+  });
+
+  // 检查连锁更新（如果当前节点变大可能影响后续节点）
+  let cascadeInfo: CascadeUpdateInfo = {
+    triggerEntry: position,
+    affectedEntries: [],
+    updateChain: [],
+    totalBytesAdded: 0,
+    updateCount: 0,
+  };
+
+  // 如果节点总大小变大或变小，需要检查后续节点
+  if (newTotalSize !== oldTotalSize || prevlenChanged) {
+    cascadeInfo = checkCascadeUpdate(newEntries, position);
+    if (cascadeInfo.updateCount > 0) {
+      applyCascadeUpdate(newEntries, cascadeInfo);
+    }
+  }
+
+  // 重新计算偏移量
+  recalculateOffsets(newEntries);
+
+  // 更新 header
+  const newTotalBytes = ZIPLIST_HEADER_SIZE +
+    newEntries.reduce((sum, e) => sum + e.totalSize, 0) +
+    ZIPLIST_END_SIZE;
+
+  const newHeader: ZipListHeader = {
+    zlbytes: newTotalBytes,
+    zltail: newEntries.length > 0 ? newEntries[newEntries.length - 1].offset : ZIPLIST_HEADER_SIZE,
+    zllen: newEntries.length,
+  };
+
+  const memoryBlocks = createMemoryBlocks(newHeader, newEntries, state.end);
+
+  const newState: ZipListState = {
+    header: newHeader,
+    entries: newEntries,
+    end: state.end,
+    memoryBlocks,
+    totalBytes: newTotalBytes,
+    createdAt: state.createdAt,
+  };
+
+  return {
+    success: true,
+    newState,
+    message: `成功更新位置${position}的节点`,
+    affectedEntries: [position, ...cascadeInfo.affectedEntries],
+    cascadeUpdateCount: cascadeInfo.updateCount,
+    bytesAdded: newTotalSize - oldTotalSize + cascadeInfo.totalBytesAdded,
+  };
+}
+
+/**
+ * 按索引查找节点 - O(n)
+ */
+export function findByIndex(state: ZipListState, index: number): SearchResult {
+  const steps: AnimationStep[] = [];
+  let currentOffset = ZIPLIST_HEADER_SIZE;
+
+  if (index < 0 || index >= state.entries.length) {
+    return {
+      found: false,
+      position: -1,
+      steps,
+      comparisonCount: 0,
+    };
+  }
+
+  let comparisonCount = 0;
+
+  // 遍历直到找到目标索引
+  for (let i = 0; i < state.entries.length; i++) {
+    const entry = state.entries[i];
+
+    steps.push({
+      id: `find-idx-${i}`,
+      type: 'highlight',
+      duration: 300,
+      description: `访问节点 ${i}, 值: ${entry.content}`,
+      affectedEntries: [i],
+    });
+
+    comparisonCount++;
+
+    if (i === index) {
+      steps.push({
+        id: `find-idx-found-${i}`,
+        type: 'highlight',
+        duration: 500,
+        description: `找到目标节点! 位置 ${i}, 值: ${entry.content}`,
+        affectedEntries: [i],
+      });
+
+      return {
+        found: true,
+        position: i,
+        entry,
+        steps,
+        comparisonCount,
+      };
+    }
+
+    currentOffset += entry.totalSize;
+  }
+
+  return {
+    found: false,
+    position: -1,
+    steps,
+    comparisonCount,
+  };
+}
+
+/**
+ * 按值查找节点 - O(n)
+ */
+export function findByValue(state: ZipListState, value: string | number): SearchResult {
+  const steps: AnimationStep[] = [];
+  let comparisonCount = 0;
+
+  for (let i = 0; i < state.entries.length; i++) {
+    const entry = state.entries[i];
+
+    steps.push({
+      id: `find-val-${i}`,
+      type: 'highlight',
+      duration: 300,
+      description: `比较节点 ${i}: ${entry.content} ${entry.content === value ? '==' : '!='} ${value}`,
+      affectedEntries: [i],
+    });
+
+    comparisonCount++;
+
+    if (entry.content === value) {
+      steps.push({
+        id: `find-val-found-${i}`,
+        type: 'highlight',
+        duration: 500,
+        description: `找到目标! 位置 ${i}, 值: ${entry.content}`,
+        affectedEntries: [i],
+      });
+
+      return {
+        found: true,
+        position: i,
+        entry,
+        steps,
+        comparisonCount,
+      };
+    }
+  }
+
+  steps.push({
+    id: 'find-val-not-found',
+    type: 'highlight',
+    duration: 500,
+    description: `未找到值 ${value}`,
+    affectedEntries: [],
+  });
+
+  return {
+    found: false,
+    position: -1,
+    steps,
+    comparisonCount,
+  };
+}
+
+/**
+ * 正向遍历生成动画步骤
+ */
+export function traverseForward(state: ZipListState): AnimationStep[] {
+  const steps: AnimationStep[] = [];
+
+  if (state.entries.length === 0) {
+    steps.push({
+      id: 'traverse-empty',
+      type: 'highlight',
+      duration: 500,
+      description: 'ZipList 为空，无节点可遍历',
+      affectedEntries: [],
+    });
+    return steps;
+  }
+
+  let currentOffset = ZIPLIST_HEADER_SIZE;
+
+  for (let i = 0; i < state.entries.length; i++) {
+    const entry = state.entries[i];
+
+    steps.push({
+      id: `traverse-fwd-${i}`,
+      type: 'highlight',
+      duration: 400,
+      description: `正向遍历: 访问节点 ${i}, 偏移量 ${currentOffset}, 值: ${entry.content}`,
+      affectedEntries: [i],
+      data: { offset: currentOffset },
+    });
+
+    currentOffset += entry.totalSize;
+  }
+
+  steps.push({
+    id: 'traverse-fwd-complete',
+    type: 'highlight',
+    duration: 500,
+    description: `遍历完成! 共访问 ${state.entries.length} 个节点，总偏移量 ${currentOffset}`,
+    affectedEntries: [],
+  });
+
+  return steps;
+}
+
+/**
+ * 反向遍历生成动画步骤
+ */
+export function traverseBackward(state: ZipListState): AnimationStep[] {
+  const steps: AnimationStep[] = [];
+
+  if (state.entries.length === 0) {
+    steps.push({
+      id: 'traverse-empty',
+      type: 'highlight',
+      duration: 500,
+      description: 'ZipList 为空，无节点可遍历',
+      affectedEntries: [],
+    });
+    return steps;
+  }
+
+  // 从最后一个节点开始
+  const lastEntry = state.entries[state.entries.length - 1];
+  let currentOffset = lastEntry.offset;
+
+  steps.push({
+    id: 'traverse-bwd-start',
+    type: 'highlight',
+    duration: 400,
+    description: `反向遍历开始: 从最后一个节点开始，偏移量 ${currentOffset}, 值: ${lastEntry.content}`,
+    affectedEntries: [state.entries.length - 1],
+    data: { offset: currentOffset, prevlen: lastEntry.prevlen },
+  });
+
+  // 通过 prevlen 回溯到前一个节点
+  for (let i = state.entries.length - 2; i >= 0; i--) {
+    const entry = state.entries[i];
+    const prevEntry = state.entries[i + 1];
+
+    steps.push({
+      id: `traverse-bwd-${i}`,
+      type: 'highlight',
+      duration: 400,
+      description: `反向遍历: 通过 prevlen=${prevEntry.prevlen} 回溯到节点 ${i}, 偏移量 ${entry.offset}, 值: ${entry.content}`,
+      affectedEntries: [i],
+      data: { offset: entry.offset, prevlen: entry.prevlen },
+    });
+  }
+
+  steps.push({
+    id: 'traverse-bwd-complete',
+    type: 'highlight',
+    duration: 500,
+    description: `反向遍历完成! 共回溯 ${state.entries.length - 1} 次，成功到达头部`,
+    affectedEntries: [],
+  });
+
+  return steps;
 }

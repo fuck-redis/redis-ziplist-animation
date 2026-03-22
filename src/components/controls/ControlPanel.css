@@ -1,60 +1,72 @@
 .control-panel {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: 12px;
 }
 
 .control-card {
-  background: white;
-  border-radius: var(--radius-md);
-  padding: var(--spacing-md);
-  box-shadow: var(--shadow-sm);
+  background: var(--bg-secondary);
+  border-radius: 2px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
 }
 
 .control-title {
   font-size: 15px;
   font-weight: 600;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 8px;
   color: var(--text-primary);
   display: flex;
   align-items: center;
-  gap: var(--spacing-xs);
+  gap: 6px;
 }
 
 .operation-selector {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-xs);
-  margin-bottom: var(--spacing-md);
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .operation-selector {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .op-btn {
-  padding: var(--spacing-xs) var(--spacing-sm);
-  background: var(--bg-secondary);
-  border: 2px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  font-size: 13px;
+  padding: 6px 4px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  font-size: 12px;
   font-weight: 500;
-  transition: all var(--transition-fast);
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
   cursor: pointer;
 }
 
+.op-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
 .op-btn.active {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: var(--primary-color);
   color: white;
-  border-color: transparent;
+  border-color: var(--primary-color);
 }
 
 .control-form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: 12px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
+  gap: 6px;
 }
 
 .form-label {
@@ -64,68 +76,116 @@
 }
 
 .form-input, .form-textarea {
-  padding: var(--spacing-sm);
-  border: 2px solid var(--border-color);
-  border-radius: var(--radius-md);
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
   font-size: 14px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus, .form-textarea:focus {
+  border-color: var(--primary-color);
 }
 
 .form-hint {
   font-size: 11px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .form-actions {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: 12px;
 }
 
 .action-btn {
   flex: 1;
-  padding: var(--spacing-md);
-  border-radius: var(--radius-md);
+  padding: 10px;
+  border-radius: 2px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all 0.2s ease;
 }
 
 .action-btn.primary {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: var(--primary-color);
   color: white;
   border: none;
+}
+
+.action-btn.primary:hover {
+  background: var(--primary-color);
+  opacity: 0.9;
 }
 
 .action-btn.secondary {
-  background: var(--bg-secondary);
-  border: 2px solid var(--border-color);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.action-btn.secondary:hover {
+  background: var(--bg-hover);
 }
 
 .action-btn.danger {
-  background: #f44336;
+  background: var(--error-color);
   color: white;
   border: none;
+}
+
+.action-btn.danger:hover {
+  background: #dc2626;
 }
 
 .tips-content, .info-content {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: 12px;
 }
 
 .tip-item, .info-item {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: 8px;
   font-size: 13px;
+  color: var(--text-secondary);
 }
 
 .info-label {
   font-weight: 600;
+  color: var(--text-primary);
 }
 
 .info-value {
   font-family: var(--font-family-mono);
   font-weight: 700;
   color: var(--primary-color);
+}
+
+.form-select {
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  font-size: 14px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.form-select:focus {
+  border-color: var(--primary-color);
+}
+
+.search-result {
+  margin-top: 6px;
+  padding: 10px;
+  background: var(--bg-tertiary);
+  border-radius: 2px;
+  font-size: 13px;
+  color: var(--text-primary);
+  text-align: center;
+  border: 1px solid var(--border-color);
 }

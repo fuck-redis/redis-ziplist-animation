@@ -1,0 +1,137 @@
+.entry-structure-d3 {
+  background: #FFFFFF;
+  border-radius: 2px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.viz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.viz-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1E293B;
+  margin: 0;
+}
+
+.toggle-btn {
+  background: #3B82F6;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background: #2563EB;
+}
+
+.viz-container {
+  display: flex;
+  justify-content: center;
+  background: #F8FAFC;
+  border-radius: 2px;
+  padding: 12px;
+}
+
+.viz-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.part-detail-panel {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: #F8FAFC;
+  border-radius: 2px;
+  border-left: 2px solid #3B82F6;
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.detail-name {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Monaco', 'Menlo', monospace;
+  color: #1E293B;
+}
+
+.detail-size {
+  font-size: 13px;
+  color: #64748B;
+  font-family: 'Monaco', 'Menlo', monospace;
+  background: #E2E8F0;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.detail-desc {
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.detail-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.detail-list li {
+  color: #475569;
+  font-size: 13px;
+  padding: 6px 0 6px 20px;
+  position: relative;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.detail-list li:last-child {
+  border-bottom: none;
+}
+
+.detail-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 4px;
+  color: #3B82F6;
+}
+
+.hint-panel {
+  margin-top: 14px;
+  padding: 12px;
+  background: #F0F9FF;
+  border-radius: 2px;
+  text-align: center;
+}
+
+.hint-panel p {
+  color: #0369A1;
+  font-size: 14px;
+  margin: 0;
+}

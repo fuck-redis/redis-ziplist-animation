@@ -4,6 +4,8 @@ import MemoryLayoutView from './MemoryLayoutView';
 import ByteLevelView from './ByteLevelView';
 import StructureView from './StructureView';
 import StatisticsPanel from './StatisticsPanel';
+import ConversionDemo from './ConversionDemo';
+import { InlineVideo } from '../video/InlineVideo';
 import './VisualizationArea.css';
 
 interface VisualizationAreaProps {
@@ -12,12 +14,12 @@ interface VisualizationAreaProps {
 }
 
 function VisualizationArea({ zipListState, config }: VisualizationAreaProps) {
-  const [activeTab, setActiveTab] = useState<'memory' | 'byte' | 'structure'>('memory');
+  const [activeTab, setActiveTab] = useState<'memory' | 'byte' | 'structure' | 'conversion'>('memory');
 
   return (
     <div className="visualization-area">
       <div className="viz-header">
-        <h2 className="viz-title">ZipList 可视化</h2>
+        <h2 className="viz-title">ZipList 可视化 <InlineVideo videoType="memory" title="内存布局" /></h2>
         <div className="viz-tabs">
           <button
             className={`viz-tab ${activeTab === 'memory' ? 'active' : ''}`}
@@ -37,6 +39,12 @@ function VisualizationArea({ zipListState, config }: VisualizationAreaProps) {
           >
             结构视图
           </button>
+          <button
+            className={`viz-tab ${activeTab === 'conversion' ? 'active' : ''}`}
+            onClick={() => setActiveTab('conversion')}
+          >
+            转换演示
+          </button>
         </div>
       </div>
 
@@ -44,6 +52,7 @@ function VisualizationArea({ zipListState, config }: VisualizationAreaProps) {
         {activeTab === 'memory' && <MemoryLayoutView zipListState={zipListState} />}
         {activeTab === 'byte' && <ByteLevelView zipListState={zipListState} />}
         {activeTab === 'structure' && <StructureView zipListState={zipListState} />}
+        {activeTab === 'conversion' && <ConversionDemo />}
       </div>
 
       {config.showStatistics && (

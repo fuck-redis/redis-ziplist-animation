@@ -1,0 +1,54 @@
+.idea-mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.52);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 70;
+}
+
+.idea-dialog {
+  width: min(620px, 90vw);
+  background: #ffffff;
+  border-radius: 2px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.25);
+  overflow: hidden;
+}
+
+.idea-header {
+  height: 52px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f1f5f9;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.idea-header h3 {
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.idea-header button {
+  height: 30px;
+  border: 1px solid #94a3b8;
+  border-radius: 2px;
+  background: #ffffff;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.idea-list {
+  list-style: decimal;
+  margin: 0;
+  padding: 14px 26px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #0f172a;
+  font-size: 14px;
+  line-height: 1.6;
+}

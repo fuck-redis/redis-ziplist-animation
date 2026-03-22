@@ -66,9 +66,8 @@
 }
 
 .byte-cell:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   border-color: var(--text-primary);
-  box-shadow: var(--shadow-md);
   z-index: 10;
 }
 

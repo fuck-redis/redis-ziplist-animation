@@ -1,0 +1,154 @@
+.conversion-flowchart {
+  background: #F8FAFC;
+  border-radius: 2px;
+  padding: 16px;
+  width: 100%;
+  max-width: 850px;
+}
+
+.flowchart-header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.flowchart-header h3 {
+  color: #1E293B;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.flowchart-description {
+  color: #64748B;
+  font-size: 13px;
+}
+
+.flowchart-svg {
+  width: 100%;
+  height: 420px;
+  display: block;
+  margin: 0 auto;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 12px;
+  padding: 8px;
+  background: white;
+  border-radius: 2px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #475569;
+}
+
+.legend-shape {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.legend-shape.source {
+  background: #3B82F6;
+  border-radius: 4px;
+}
+
+.legend-shape.condition {
+  background: #F59E0B;
+  transform: rotate(45deg);
+  width: 16px;
+  height: 16px;
+}
+
+.legend-shape.target {
+  background: #10B981;
+  border-radius: 4px;
+}
+
+.conversion-info-panel {
+  margin-top: 14px;
+  padding: 12px;
+  background: white;
+  border-radius: 2px;
+  border: 1px solid #E2E8F0;
+  animation: slideIn 0.3s ease;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.panel-badge {
+  padding: 4px 12px;
+  border-radius: 4px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.panel-arrow {
+  color: #94A3B8;
+  font-size: 18px;
+}
+
+.panel-description {
+  color: #475569;
+  font-size: 13px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.panel-conditions {
+  margin-bottom: 12px;
+}
+
+.panel-conditions strong {
+  color: #1E293B;
+  font-size: 12px;
+}
+
+.panel-conditions ul {
+  margin: 8px 0 0 20px;
+  padding: 0;
+}
+
+.panel-conditions li {
+  color: #64748B;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.panel-close {
+  background: #F1F5F9;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  color: #475569;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.panel-close:hover {
+  background: #E2E8F0;
+  color: #1E293B;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

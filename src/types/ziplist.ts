@@ -208,3 +208,74 @@ export interface VisualizationConfig {
   highlightDuration: number;            // 高亮持续时间
   colorScheme: 'default' | 'dark' | 'colorblind';  // 色彩方案
 }
+
+// 数据结构类型
+export enum DataStructureType {
+  ZIPLIST = 'ziplist',
+  QUICKLIST = 'quicklist',
+  HASHTABLE = 'hashtable',
+  SKIPLIST = 'skiplist',
+}
+
+// 更新操作结果
+export interface UpdateResult extends OperationResult {
+  oldEncoding: EntryEncoding;
+  newEncoding: EntryEncoding;
+  oldTotalSize: number;
+  newTotalSize: number;
+  cascadeUpdate: boolean;
+  encodingChanged: boolean;
+  prevlenChanged: boolean;
+}
+
+// 查找结果
+export interface SearchResult {
+  found: boolean;
+  position: number;
+  entry?: ZipListEntry;
+  steps: AnimationStep[];
+  comparisonCount: number;
+}
+
+// 遍历信息
+export interface TraversalInfo {
+  direction: 'forward' | 'backward';
+  currentPosition: number;
+  currentEntry?: ZipListEntry;
+  steps: AnimationStep[];
+  complete: boolean;
+}
+
+// 转换规则
+export interface ConversionRule {
+  triggerCondition: string;
+  currentType: DataStructureType;
+  targetType: DataStructureType;
+  threshold: number | string;
+  description: string;
+}
+
+// Redis 配置项
+export interface RedisConfigItem {
+  value: number | string;
+  label: string;
+  description: string;
+}
+
+export interface RedisConfig {
+  list: {
+    maxZipListSize: RedisConfigItem[];
+    maxZipListEntries: number;
+  };
+  hash: {
+    maxZipListEntries: number;
+    maxZipListValue: number;
+  };
+  sortedSet: {
+    maxZipListEntries: number;
+    maxZipListValue: number;
+  };
+}
+
+// 遍历步骤类型
+export type TraversalStepType = 'visit' | 'compare' | 'move' | 'complete';

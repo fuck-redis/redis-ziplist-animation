@@ -1,0 +1,577 @@
+.inline-video {
+  display: block;
+  margin: 16px 0;
+}
+
+.inline-video--small .inline-video__player {
+  width: 320px;
+  height: 200px;
+}
+
+.inline-video--default .inline-video__player {
+  width: 480px;
+  height: 280px;
+}
+
+.inline-video--large .inline-video__player {
+  width: 640px;
+  height: 360px;
+}
+
+.inline-video--xlarge .inline-video__player {
+  width: 800px;
+  height: 480px;
+}
+
+.inline-video__player {
+  width: 480px;
+  height: 280px;
+  background: #f1f5f9;
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #cbd5e1;
+  transition: all 0.3s ease;
+}
+
+.inline-video__player:hover {
+  border-color: #3b82f6;
+  /* Removed scale transform for flat design */
+}
+
+.inline-video__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.15);
+  transition: opacity 0.2s;
+}
+
+.inline-video__player:hover .inline-video__overlay {
+  opacity: 1;
+}
+
+.inline-video__icon {
+  font-size: 24px;
+  background: rgba(59, 130, 246, 0.9);
+  border-radius: 2px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inline-video__title {
+  text-align: center;
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 6px;
+  font-family: monospace;
+}
+
+/* 动画样式 */
+.anim-structure,
+.anim-encoding,
+.anim-cascade,
+.anim-traversal,
+.anim-memory,
+.anim-comparison {
+  padding: 12px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: monospace;
+}
+
+.anim-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.anim-label {
+  font-size: 10px;
+  color: #06b6d4;
+}
+
+.anim-blocks {
+  display: flex;
+  gap: 2px;
+}
+
+.anim-arrow {
+  font-size: 16px;
+  color: #64748b;
+}
+
+.anim-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.anim-entry {
+  display: flex;
+  gap: 2px;
+}
+
+.anim-entry.small .anim-block {
+  width: 24px;
+  height: 24px;
+  font-size: 10px;
+}
+
+.anim-entry.large .anim-block {
+  width: 40px;
+  height: 24px;
+  font-size: 10px;
+}
+
+.anim-block {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+  transition: all 0.2s;
+}
+
+.anim-block.header {
+  background: #06b6d4;
+}
+
+.anim-block.entry {
+  background: #3b82f6;
+}
+
+.anim-block.entry.content {
+  background: #3b82f6;
+}
+
+.anim-block.entry.highlight {
+  background: #f59e0b;
+  animation: pulse 0.5s infinite;
+}
+
+.anim-block.entry.warning {
+  background: #ef4444;
+}
+
+.anim-block.enc {
+  background: #06b6d4;
+  width: 24px;
+  height: 24px;
+  font-size: 9px;
+}
+
+.anim-block.end {
+  background: #ef4444;
+  width: 32px;
+  height: 32px;
+}
+
+.anim-block.active {
+  transform: scale(1.15);
+  box-shadow: 0 0 10px currentColor;
+}
+
+.anim-end {
+  display: flex;
+}
+
+/* Encoding Animation */
+.anim-encoding {
+  align-items: center;
+}
+
+.anim-encoding__label {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.anim-encoding__demo {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.anim-encoding__info {
+  font-size: 10px;
+  color: #10b981;
+}
+
+/* Cascade Animation */
+.anim-cascade {
+  gap: 6px;
+}
+
+.anim-cascade__phase {
+  font-size: 10px;
+  color: #f59e0b;
+}
+
+.anim-cascade__entries {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.anim-cascade__warning {
+  font-size: 10px;
+  color: #ef4444;
+  animation: blink 0.5s infinite;
+}
+
+.anim-cascade__info {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+/* Traversal Animation */
+.anim-traversal {
+  gap: 8px;
+}
+
+.anim-traversal__dir {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.anim-traversal__path {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.anim-traversal__path .anim-block {
+  background: #cbd5e1;
+  color: #475569;
+  width: 28px;
+  height: 28px;
+}
+
+.anim-traversal__path .anim-block.active {
+  background: #3b82f6;
+}
+
+.anim-traversal__arrow {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.anim-traversal__info {
+  font-size: 10px;
+  color: #10b981;
+}
+
+/* Memory Animation */
+.anim-memory {
+  gap: 8px;
+}
+
+.anim-memory__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 3px;
+}
+
+.anim-memory__byte {
+  width: 22px;
+  height: 22px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: bold;
+  color: white;
+  transition: all 0.15s;
+}
+
+.anim-memory__byte.header {
+  background: #06b6d4;
+}
+
+.anim-memory__byte.entry {
+  background: #3b82f6;
+}
+
+.anim-memory__byte.end {
+  background: #ef4444;
+}
+
+.anim-memory__byte.active {
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.anim-memory__info {
+  font-size: 10px;
+  color: #64748b;
+}
+
+/* Comparison Animation */
+.anim-comparison {
+  gap: 10px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.anim-comparison__title {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.anim-comparison__bars {
+  width: 100%;
+}
+
+.anim-bar {
+  height: 20px;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: white;
+  font-weight: bold;
+  transition: width 0.3s ease;
+}
+
+.anim-bar-label {
+  font-size: 9px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.anim-comparison__features {
+  display: flex;
+  gap: 12px;
+  font-size: 10px;
+  color: #64748b;
+}
+
+.anim-comparison__features span.active {
+  color: #10b981;
+  font-weight: bold;
+}
+
+/* ============ NEW ANIMATION STYLES ============ */
+
+/* Header Bytes Animation */
+.anim-header-bytes {
+  gap: 4px;
+}
+
+.anim-header__bytes {
+  display: flex;
+  justify-content: center;
+}
+
+.byte-display {
+  font-size: 12px;
+  font-weight: bold;
+  color: #06b6d4;
+  background: rgba(6, 182, 212, 0.1);
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px dashed #06b6d4;
+}
+
+/* Entry Breakdown Animation */
+.anim-entry-breakdown {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.anim-breakdown-plus {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.anim-breakdown-desc {
+  font-size: 10px;
+  color: #10b981;
+  margin-top: 4px;
+}
+
+/* Zlbytes Change Animation */
+.anim-memory__zlbytes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.zlbytes-label {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.zlbytes-value {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.zlbytes-unit {
+  font-size: 9px;
+  color: #64748b;
+}
+
+/* Zllen Count Animation */
+.anim-zllen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.zllen-label {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.zllen-value {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Hash Demo Animation */
+.anim-hash-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.hash-field {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hash-key {
+  font-size: 12px;
+  font-weight: bold;
+  color: #8b5cf6;
+}
+
+.hash-arrow {
+  color: #64748b;
+}
+
+.hash-value {
+  font-size: 12px;
+  color: #10b981;
+}
+
+/* ZSet Demo Animation */
+.anim-zset-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.zset-score {
+  font-size: 18px;
+  font-weight: bold;
+  color: #f59e0b;
+}
+
+.zset-member {
+  font-size: 12px;
+  color: #8b5cf6;
+}
+
+/* Cache Display Animation */
+.anim-cache-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.cache-line {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+}
+
+.cache-data {
+  display: flex;
+  gap: 2px;
+}
+
+.cache-byte {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+/* Compress Depth Animation */
+.anim-compress-depth {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.compress-level {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: bold;
+  background: #94a3b8;
+  color: white;
+  transition: all 0.2s;
+}
+
+.compress-level.active {
+  background: #3b82f6;
+  transform: scale(1.1);
+}
+
+.compress-level.compressed {
+  background: #10b981;
+}
+
+/* Convert Flow Animation */
+.anim-convert-flow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}

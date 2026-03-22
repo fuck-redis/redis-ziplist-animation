@@ -10,8 +10,12 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  base: process.env.NODE_ENV === 'production' ? '/redis-ziplist-animation/' : '/',
+  build: {
+    outDir: 'dist',
+  },
   server: {
     port: 46049,
-    open: true,
+    open: false,
   },
 })

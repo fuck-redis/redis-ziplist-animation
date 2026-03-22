@@ -1,0 +1,131 @@
+.performance-bar-chart {
+  background: #F8FAFC;
+  border-radius: 2px;
+  padding: 16px;
+  width: 100%;
+  max-width: 700px;
+}
+
+.chart-header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.chart-header h3 {
+  color: #1E293B;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.chart-description {
+  color: #64748B;
+  font-size: 13px;
+}
+
+.operation-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+  padding: 0 20px;
+}
+
+.operation-tab {
+  flex: 1;
+  padding: 8px 10px;
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.operation-tab:hover {
+  border-color: #3B82F6;
+  background: #F8FAFC;
+}
+
+.operation-tab.active {
+  border-color: #3B82F6;
+  background: #3B82F6;
+}
+
+.operation-tab.active .tab-label {
+  color: white;
+}
+
+.tab-label {
+  color: #1E293B;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.chart-svg {
+  width: 100%;
+  height: 350px;
+  display: block;
+  margin: 0 auto;
+}
+
+.hover-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 6px 12px;
+  background: white;
+  border-radius: 2px;
+  border: 1px solid #E2E8F0;
+  animation: fadeIn 0.15s ease;
+}
+
+.hover-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.hover-name {
+  color: #475569;
+  font-size: 13px;
+}
+
+.hover-value {
+  color: #1E293B;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.complexity-scale {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+  font-size: 11px;
+  color: #94A3B8;
+}
+
+.scale-bar {
+  width: 100px;
+  height: 6px;
+  background: linear-gradient(to right, #10B981, #F59E0B, #EF4444);
+  border-radius: 3px;
+}
+
+.scale-low {
+  color: #10B981;
+}
+
+.scale-high {
+  color: #EF4444;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

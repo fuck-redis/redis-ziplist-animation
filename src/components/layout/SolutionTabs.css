@@ -1,0 +1,27 @@
+.solution-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.solution-tab {
+  text-decoration: none;
+  border: 1px solid #94a3b8;
+  color: #0f172a;
+  background: transparent;
+  height: 32px;
+  border-radius: 2px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.solution-tab.active {
+  border-color: #0369a1;
+  color: #ffffff;
+  background: #0369a1;
+}

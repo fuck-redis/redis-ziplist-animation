@@ -1,0 +1,441 @@
+.comparison-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.section-hero {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.comparison-title {
+  font-size: 1.75rem;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.comparison-intro {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.compare-section {
+  margin-bottom: 2rem;
+}
+
+.section-heading {
+  font-size: 1.25rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+/* 内存布局对比 */
+.memory-compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.structure-card {
+  background: var(--color-surface);
+  border-radius: 2px;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+}
+
+.structure-card h3 {
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+/* ZipList 内存可视化 */
+.memory-visual {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--color-background);
+  border-radius: 2px;
+  margin-bottom: 0.75rem;
+}
+
+.memory-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.7rem;
+  border-radius: 2px;
+  padding: 0.15rem;
+}
+
+.memory-block.header {
+  background: #3b82f6;
+  color: white;
+  width: 50px;
+  height: 32px;
+}
+
+.memory-block.entry {
+  background: #48bb78;
+  color: white;
+  min-width: 32px;
+  height: 32px;
+}
+
+.memory-block.end {
+  background: #ed8936;
+  color: white;
+  width: 24px;
+  height: 32px;
+}
+
+/* QuickList 可视化 */
+.memory-visual.quicklist {
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pointer-block {
+  background: #3b82f6;
+  color: white;
+  padding: 0.15rem 0.35rem;
+  border-radius: 2px;
+  font-size: 0.6rem;
+}
+
+.ziplist-block {
+  display: flex;
+  gap: 1px;
+  background: var(--color-border);
+  padding: 1px;
+  border-radius: 2px;
+}
+
+.mini-header {
+  background: #3b82f6;
+  color: white;
+  font-size: 0.55rem;
+  padding: 0.15rem;
+}
+
+.mini-entry {
+  background: #48bb78;
+  color: white;
+  font-size: 0.55rem;
+  padding: 0.15rem;
+}
+
+/* LinkedList 可视化 */
+.memory-visual.linkedlist {
+  flex-direction: column;
+  gap: 6px;
+}
+
+.node-block {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.node-data {
+  background: #48bb78;
+  color: white;
+  padding: 0.35rem 0.75rem;
+  border-radius: 2px;
+  font-size: 0.7rem;
+}
+
+.node-arrow {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+}
+
+.node-null {
+  color: var(--color-text-secondary);
+  font-size: 0.7rem;
+  padding: 0.35rem;
+}
+
+.structure-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.structure-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.structure-features li {
+  padding: 0.2rem 0;
+  color: var(--color-text);
+}
+
+.structure-features li:first-child {
+  color: #48bb78;
+}
+
+/* 性能对比表格 */
+.performance-table-wrapper {
+  overflow-x: auto;
+}
+
+.performance-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.performance-table th,
+.performance-table td {
+  padding: 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.performance-table th {
+  background: var(--color-primary);
+  color: white;
+  font-weight: 600;
+}
+
+.performance-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+}
+
+.performance-table .good {
+  color: #48bb78;
+  font-weight: 600;
+}
+
+.performance-table .medium {
+  color: #ed8936;
+}
+
+.performance-table .bad {
+  color: #f56565;
+}
+
+.table-note {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.75rem;
+  font-style: italic;
+}
+
+.performance-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.legend-item {
+  font-size: 0.8rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+}
+
+.legend-item.good {
+  background: rgba(72, 187, 120, 0.15);
+  color: #48bb78;
+}
+
+.legend-item.medium {
+  background: rgba(237, 137, 54, 0.15);
+  color: #ed8936;
+}
+
+.legend-item.bad {
+  background: rgba(245, 101, 101, 0.15);
+  color: #f56565;
+}
+
+/* 适用场景 */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.scenario-card {
+  background: var(--color-surface);
+  border-radius: 2px;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+}
+
+.scenario-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.scenario-icon {
+  font-size: 1.25rem;
+}
+
+.scenario-header h3 {
+  color: var(--color-text);
+  margin: 0;
+}
+
+.scenario-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.75rem;
+}
+
+.scenario-list li {
+  padding: 0.35rem 0;
+  padding-left: 1rem;
+  position: relative;
+  color: var(--color-text-secondary);
+}
+
+.scenario-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+}
+
+.scenario-example {
+  background: var(--color-background);
+  padding: 0.75rem;
+  border-radius: 2px;
+  font-size: 0.85rem;
+}
+
+.scenario-example strong {
+  color: var(--color-text);
+}
+
+.scenario-example p {
+  margin: 0.35rem 0 0;
+  color: var(--color-text-secondary);
+}
+
+/* 选择指南 */
+.decision-tree {
+  background: var(--color-surface);
+  border-radius: 2px;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+}
+
+.decision-step {
+  text-align: center;
+}
+
+.step-question {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.step-branches {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.branch-label {
+  background: var(--color-background);
+  padding: 0.35rem 0.75rem;
+  border-radius: 2px;
+  font-size: 0.85rem;
+}
+
+.branch-arrow {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.branch-result {
+  padding: 0.35rem 0.75rem;
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+.branch-result.ziplist {
+  background: #48bb78;
+  color: white;
+}
+
+.branch-result.quicklist {
+  background: #3b82f6;
+  color: white;
+}
+
+.decision-note {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--color-background);
+  border-radius: 2px;
+  text-align: center;
+}
+
+.decision-note h4 {
+  color: var(--color-primary);
+  margin-bottom: 0.35rem;
+}
+
+.decision-note p {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.section-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.nav-link {
+  display: inline-block;
+  background: var(--color-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+}

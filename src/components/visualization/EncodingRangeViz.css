@@ -1,0 +1,231 @@
+.encoding-range-viz {
+  background: #FFFFFF;
+  border-radius: 2px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.viz-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1E293B;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.viz-subtitle {
+  font-size: 14px;
+  color: #64748B;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.viz-container {
+  display: flex;
+  justify-content: center;
+  background: #F8FAFC;
+  border-radius: 2px;
+  padding: 12px;
+  margin-bottom: 14px;
+}
+
+.viz-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.range-detail-panel {
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  background: #F8FAFC;
+  border-radius: 2px;
+  border-left: 2px solid #3B82F6;
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.detail-name {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Monaco', 'Menlo', monospace;
+  color: #1E293B;
+}
+
+.detail-bits {
+  font-size: 14px;
+  color: #64748B;
+  font-family: 'Monaco', 'Menlo', monospace;
+  background: #E2E8F0;
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+
+.range-values {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 16px;
+}
+
+.range-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.range-label {
+  font-size: 12px;
+  color: #64748B;
+}
+
+.range-value {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Monaco', 'Menlo', monospace;
+}
+
+.range-item.negative .range-value {
+  color: #DC2626;
+}
+
+.range-item.positive .range-value {
+  color: #059669;
+}
+
+.range-formula {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 12px;
+  background: #1E293B;
+  border-radius: 2px;
+}
+
+.formula-label {
+  color: #94A3B8;
+  font-size: 13px;
+}
+
+.range-formula code {
+  color: #10B981;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 14px;
+}
+
+.range-example {
+  padding: 12px;
+  background: #F1F5F9;
+  border-radius: 2px;
+}
+
+.example-label {
+  font-size: 12px;
+  color: #64748B;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.example-values {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.example-values span {
+  font-size: 13px;
+  color: #475569;
+}
+
+.example-values code {
+  font-family: 'Monaco', 'Menlo', monospace;
+  background: #E2E8F0;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: #059669;
+}
+
+.range-legend {
+  background: #F8FAFC;
+  border-radius: 2px;
+  padding: 16px;
+}
+
+.legend-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 12px;
+}
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.legend-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 8px;
+  background: white;
+  border-radius: 2px;
+  border: 2px solid #E2E8F0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.legend-item:hover {
+  border-color: #94A3B8;
+}
+
+.legend-item.active {
+  border-color: #3B82F6;
+}
+
+.legend-color {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.legend-name {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Monaco', 'Menlo', monospace;
+  color: #1E293B;
+}
+
+.legend-range {
+  font-size: 11px;
+  color: #64748B;
+}
+
+@media (max-width: 768px) {
+  .legend-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .range-values {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

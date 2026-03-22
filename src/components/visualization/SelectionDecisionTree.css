@@ -1,0 +1,132 @@
+.selection-decision-tree {
+  background: #F8FAFC;
+  border-radius: 2px;
+  padding: 16px;
+  width: 100%;
+  max-width: 750px;
+}
+
+.tree-header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.tree-header h3 {
+  color: #1E293B;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.tree-description {
+  color: #64748B;
+  font-size: 13px;
+}
+
+.tree-svg {
+  width: 100%;
+  height: 450px;
+  display: block;
+  margin: 0 auto;
+  background: white;
+  border-radius: 2px;
+  border: 1px solid #E2E8F0;
+}
+
+.reset-button {
+  display: block;
+  margin: 12px auto;
+  background: #3B82F6;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reset-button:hover {
+  background: #2563EB;
+}
+
+.decision-path {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 8px;
+  background: white;
+  border-radius: 2px;
+  border: 1px solid #E2E8F0;
+}
+
+.path-label {
+  color: #64748B;
+  font-size: 12px;
+}
+
+.path-steps {
+  display: flex;
+  gap: 6px;
+}
+
+.path-step {
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.path-step.question {
+  background: #E2E8F0;
+  color: #475569;
+}
+
+.path-step.yes {
+  background: #10B981;
+  color: white;
+}
+
+.path-step.no {
+  background: #EF4444;
+  color: white;
+}
+
+.structure-legend {
+  margin-top: 14px;
+  padding: 12px;
+  background: white;
+  border-radius: 2px;
+  border: 1px solid #E2E8F0;
+}
+
+.structure-legend h4 {
+  color: #1E293B;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.legend-name {
+  color: #475569;
+  font-size: 12px;
+}

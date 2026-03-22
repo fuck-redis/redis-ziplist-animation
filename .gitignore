@@ -16,6 +16,9 @@ build
 # Testing
 /coverage
 .nyc_output
+test-results/
+qa-*.mjs
+qa-screenshots/
 
 # Environment variables
 .env
@@ -73,3 +76,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+
+# Remotion
+out/

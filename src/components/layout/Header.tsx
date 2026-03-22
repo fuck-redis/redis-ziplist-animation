@@ -13,15 +13,17 @@ function Header({ currentSection, onSectionChange }: HeaderProps) {
     { id: 'introduction', label: '基础知识', icon: '📖' },
     { id: 'demo', label: '实战演示', icon: '🎮' },
     { id: 'concepts', label: '核心概念', icon: '🔬' },
+    { id: 'config', label: '配置参数', icon: '⚙️' },
+    { id: 'comparison', label: '对比', icon: '⚖️' },
+    { id: 'commands', label: 'Redis命令', icon: '⌨️' },
     { id: 'practice', label: '练习测验', icon: '✍️' },
-    { id: 'resources', label: '学习资源', icon: '📚' },
   ];
 
   return (
     <header className="header">
       <div className="header-content">
         <div className="header-left">
-          <div className="logo-section">
+          <div className="logo-section" onClick={() => onSectionChange('introduction')} style={{ cursor: 'pointer' }}>
             <div className="logo-icon">📦</div>
             <h1 className="logo-text">Redis ZipList 学习系统</h1>
           </div>

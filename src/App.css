@@ -6,7 +6,10 @@
 }
 
 .main-content {
+  display: flex;
+  flex-direction: column;
   flex: 1;
+  min-height: 0;
   padding-top: var(--spacing-lg);
 }
 

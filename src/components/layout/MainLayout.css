@@ -1,18 +1,19 @@
 .main-layout {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 140px); /* Header高度约140px */
-  overflow: hidden;
+  height: calc(100vh - 140px);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .demo-header {
   flex-shrink: 0;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: 16px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--spacing-md);
-  background: white;
+  gap: 16px;
+  background: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -34,37 +35,37 @@
 }
 
 .show-guide-btn {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: var(--primary-color);
   color: white;
   border: none;
-  padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  border-radius: 2px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+  transition: all 0.2s ease;
   white-space: nowrap;
 }
 
 .show-guide-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  background: var(--secondary-color);
 }
 
 .layout-container {
   flex: 1;
   display: grid;
   grid-template-columns: 1fr 400px;
-  gap: var(--spacing-md);
-  padding: var(--spacing-lg);
-  overflow: hidden;
+  gap: 16px;
+  padding: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--bg-primary);
 }
 
 .visualization-section {
-  background: white;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
   overflow: auto;
   display: flex;
   flex-direction: column;
@@ -73,12 +74,11 @@
 .control-section {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: 12px;
   overflow-y: auto;
-  padding-right: var(--spacing-xs);
+  padding-right: 8px;
 }
 
-/* 滚动条样式 */
 .control-section::-webkit-scrollbar {
   width: 6px;
 }
@@ -109,6 +109,6 @@
 
 @media (max-width: 768px) {
   .main-layout {
-    padding: var(--spacing-md);
+    padding: 8px;
   }
 }

@@ -1,0 +1,277 @@
+.commands-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.commands-title {
+  font-size: 1.75rem;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.commands-intro {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* 命令分类 Tab */
+.command-tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.tab-btn:hover {
+  border-color: var(--color-primary);
+}
+
+.tab-btn.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.tab-icon {
+  font-size: 1rem;
+}
+
+/* 命令列表 */
+.command-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.command-card {
+  background: var(--color-surface);
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: border-color 0.2s;
+}
+
+.command-card:hover {
+  border-color: var(--color-primary);
+}
+
+.command-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.command-info {
+  flex: 1;
+}
+
+.command-name {
+  display: block;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  background: var(--color-background);
+  padding: 0.35rem 0.75rem;
+  border-radius: 2px;
+  margin-bottom: 0.35rem;
+}
+
+.command-desc {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.expand-icon {
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  font-weight: bold;
+  width: 24px;
+  text-align: center;
+}
+
+/* 命令详情 */
+.command-details {
+  padding: 1rem;
+  padding-top: 0;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-background);
+}
+
+.detail-row {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.detail-row:last-of-type {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: var(--color-text);
+  min-width: 80px;
+}
+
+.detail-value {
+  color: var(--color-text-secondary);
+}
+
+.ziplist-condition {
+  color: #48bb78;
+}
+
+.related-command {
+  display: inline-block;
+  background: var(--color-surface);
+  padding: 0.15rem 0.35rem;
+  border-radius: 2px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  margin-right: 0.35rem;
+}
+
+.command-demo {
+  margin-top: 0.75rem;
+}
+
+.command-demo h4 {
+  font-size: 0.85rem;
+  color: var(--color-text);
+  margin-bottom: 0.35rem;
+}
+
+.command-demo pre {
+  background: #1a1a2e;
+  color: #eee;
+  padding: 0.75rem;
+  border-radius: 2px;
+  overflow-x: auto;
+  font-size: 0.8rem;
+}
+
+.command-demo code {
+  font-family: 'Fira Code', monospace;
+}
+
+/* 编码检查 */
+.encoding-check {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--color-border);
+}
+
+.section-heading {
+  font-size: 1.25rem;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+}
+
+.section-intro {
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.encoding-examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.75rem;
+}
+
+.encoding-example {
+  background: var(--color-surface);
+  border-radius: 2px;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+}
+
+.example-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.example-header code {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: var(--color-text);
+}
+
+.encoding-value {
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.encoding-value.ziplist {
+  background: rgba(72, 187, 120, 0.15);
+  color: #48bb78;
+}
+
+.encoding-value.quicklist {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+
+.encoding-value.hashtable {
+  background: rgba(245, 101, 101, 0.15);
+  color: #f56565;
+}
+
+.encoding-value.skiplist {
+  background: rgba(6, 182, 212, 0.15);
+  color: #06b6d4;
+}
+
+.example-desc {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.section-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.nav-link {
+  display: inline-block;
+  background: var(--color-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+}

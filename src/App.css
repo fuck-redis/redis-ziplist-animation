@@ -38,3 +38,14 @@
   color: var(--text-secondary);
   margin-top: var(--spacing-xl);
 }
+
+/* Demo mode: full viewport height without scrolling */
+.main-content.demo-mode {
+  padding-top: 0;
+  height: calc(100vh - 60px); /* Header height */
+  overflow: hidden;
+}
+
+.main-content.demo-mode > * {
+  height: 100%;
+}

@@ -73,7 +73,7 @@ function App() {
         currentSection={getCurrentSection()}
         onSectionChange={handleSectionChange}
       />
-      <main className="main-content">
+      <main className={`main-content ${location.pathname === '/demo' ? 'demo-mode' : ''}`}>
         <Routes>
           <Route path="/" element={<IntroductionSection />} />
           <Route path="/introduction" element={<IntroductionSection />} />
@@ -105,7 +105,7 @@ function App() {
           />
         </Routes>
       </main>
-      <Footer />
+      {!location.pathname.startsWith('/demo') && <Footer />}
     </div>
   );
 }

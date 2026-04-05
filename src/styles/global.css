@@ -39,6 +39,12 @@
   --border-color: #e2e8f0;
   --border-light: #cbd5e1;
 
+  /* 语义背景色 - 带透明度的颜色变量 */
+  --success-bg: rgba(34, 197, 94, 0.15);
+  --warning-bg: rgba(245, 158, 11, 0.15);
+  --error-bg: rgba(239, 68, 68, 0.1);
+  --highlight-bg: rgba(59, 130, 246, 0.08);
+
   /* CSS 变量别名 - 供 education 组件使用 */
   --color-primary: var(--primary-color);
   --color-surface: var(--bg-primary);

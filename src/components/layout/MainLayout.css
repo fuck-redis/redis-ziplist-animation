@@ -96,6 +96,7 @@
 
 .control-section {
   grid-area: right;
+  width: var(--right-panel-width, 380px);
   display: flex;
   flex-direction: column;
   overflow-y: auto;

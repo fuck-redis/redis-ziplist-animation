@@ -21,10 +21,6 @@ function MainLayout({ zipListState, config, onUpdateZipList, onUpdateConfig }: M
     const saved = localStorage.getItem('ziplist-control-panel-collapsed');
     return saved === 'true';
   });
-  const [splitRatio, setSplitRatio] = useState(() => {
-    const saved = localStorage.getItem('ziplist-split-ratio');
-    return saved ? parseFloat(saved) : 0.65;
-  });
 
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
@@ -48,24 +44,6 @@ function MainLayout({ zipListState, config, onUpdateZipList, onUpdateConfig }: M
         setIsControlPanelCollapsed(prev => {
           const newValue = !prev;
           localStorage.setItem('ziplist-control-panel-collapsed', String(newValue));
-          return newValue;
-        });
-      }
-      // Ctrl+[ 减小分割比例
-      if (e.ctrlKey && e.key === '[') {
-        e.preventDefault();
-        setSplitRatio(prev => {
-          const newValue = Math.max(0.3, prev - 0.05);
-          localStorage.setItem('ziplist-split-ratio', String(newValue));
-          return newValue;
-        });
-      }
-      // Ctrl+] 增加分割比例
-      if (e.ctrlKey && e.key === ']') {
-        e.preventDefault();
-        setSplitRatio(prev => {
-          const newValue = Math.min(0.85, prev + 0.05);
-          localStorage.setItem('ziplist-split-ratio', String(newValue));
           return newValue;
         });
       }
@@ -93,23 +71,36 @@ function MainLayout({ zipListState, config, onUpdateZipList, onUpdateConfig }: M
       if (!isDragging.current || !containerRef.current) return;
 
       const containerRect = containerRef.current.getBoundingClientRect();
-      const newRatio = (e.clientX - containerRect.left) / containerRect.width;
-      const clampedRatio = Math.max(0.3, Math.min(0.85, newRatio));
-      setSplitRatio(clampedRatio);
+      const leftWidth = parseInt(getComputedStyle(containerRef.current).getPropertyValue('--left-panel-width'));
+
+      // Calculate right panel width based on mouse position
+      const availableWidth = containerRect.width - leftWidth;
+      const rightEdgeX = containerRect.right;
+      const splitterWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--splitter-width')) || 6;
+      const newRightWidth = rightEdgeX - e.clientX - (splitterWidth / 2);
+
+      // Clamp between min and max
+      const minWidth = 280;
+      const maxWidth = Math.min(600, availableWidth * 0.6);
+      const clampedWidth = Math.max(minWidth, Math.min(maxWidth, newRightWidth));
+
+      // Update CSS variable for right panel
+      if (containerRef.current) {
+        containerRef.current.style.setProperty('--right-panel-width', `${clampedWidth}px`);
+      }
     };
 
     const handleMouseUp = () => {
       isDragging.current = false;
       document.body.style.cursor = '';
       document.body.style.userSelect = '';
-      localStorage.setItem('ziplist-split-ratio', String(splitRatio));
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
 
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
-  }, [splitRatio]);
+  }, []);
 
   const handleCloseGuide = () => {
     setShowGuide(false);

@@ -1,20 +1,31 @@
+:root {
+  --demo-header-height: 56px;
+  --left-panel-width: 280px;
+  --right-panel-width: 380px;
+  --bottom-panel-height: 60px;
+  --splitter-width: 6px;
+  --control-panel-collapsed-width: 48px;
+  --header-height: 60px;
+}
+
 .main-layout {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 140px);
-  overflow-y: auto;
-  overflow-x: hidden;
+  height: 100%;
+  overflow: hidden;
 }
 
 .demo-header {
   flex-shrink: 0;
-  padding: 16px 24px;
+  height: var(--demo-header-height);
+  padding: 0 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
+  box-sizing: border-box;
 }
 
 .demo-title-section {
@@ -54,29 +65,45 @@
 .layout-container {
   flex: 1;
   display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: 16px;
-  padding: 24px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  grid-template-columns: var(--left-panel-width) 1fr auto;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "left center right"
+    "bottom bottom bottom";
+  gap: 0;
+  overflow: hidden;
   background: var(--bg-primary);
 }
 
+.left-panel {
+  grid-area: left;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  overflow-y: auto;
+  padding: 16px;
+}
+
 .visualization-section {
+  grid-area: center;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 2px;
-  overflow: auto;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  min-width: 300px;
 }
 
 .control-section {
+  grid-area: right;
   display: flex;
   flex-direction: column;
-  gap: 12px;
   overflow-y: auto;
-  padding-right: 8px;
+  overflow-x: hidden;
+  background: var(--bg-primary);
+  transition: width 0.3s ease;
+  position: relative;
+  flex-shrink: 0;
 }
 
 .control-section::-webkit-scrollbar {
@@ -96,19 +123,129 @@
   background: var(--text-secondary);
 }
 
+.control-section.collapsed {
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 12px;
+  width: var(--control-panel-collapsed-width) !important;
+}
+
+.bottom-panel {
+  grid-area: bottom;
+  height: var(--bottom-panel-height);
+  background: var(--bg-tertiary);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.splitter {
+  width: var(--splitter-width);
+  background: var(--border-color);
+  cursor: col-resize;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+  position: relative;
+  grid-area: right;
+  justify-self: start;
+  z-index: 10;
+}
+
+.splitter::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 40px;
+  background: var(--text-secondary);
+  border-radius: 1px;
+  opacity: 0.5;
+}
+
+.splitter:hover {
+  background: var(--primary-color);
+}
+
+.splitter:hover::after {
+  background: white;
+  opacity: 1;
+}
+
+.collapse-btn {
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  width: 28px;
+  height: 28px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.collapse-btn:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
 @media (max-width: 1200px) {
   .layout-container {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+      "left"
+      "right"
+      "center"
+      "bottom";
   }
 
+  .left-panel,
   .control-section {
-    order: -1;
+    max-height: 25vh;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .splitter {
+    display: none;
   }
 }
 
 @media (max-width: 768px) {
-  .main-layout {
-    padding: 8px;
+  .demo-header {
+    height: 48px;
+    padding: 0 12px;
+  }
+
+  .demo-title {
+    font-size: 18px;
+  }
+
+  .demo-subtitle {
+    font-size: 12px;
+  }
+
+  .left-panel,
+  .control-section {
+    max-height: 30vh;
+  }
+
+  .collapse-btn {
+    left: 4px;
+    top: 4px;
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
   }
 }

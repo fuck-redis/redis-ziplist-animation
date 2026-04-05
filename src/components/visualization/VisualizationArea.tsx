@@ -11,9 +11,10 @@ import './VisualizationArea.css';
 interface VisualizationAreaProps {
   zipListState: ZipListState;
   config: VisualizationConfig;
+  showStatistics?: boolean;
 }
 
-function VisualizationArea({ zipListState, config }: VisualizationAreaProps) {
+function VisualizationArea({ zipListState, config, showStatistics = true }: VisualizationAreaProps) {
   const [activeTab, setActiveTab] = useState<'memory' | 'byte' | 'structure' | 'conversion'>('memory');
 
   return (
@@ -55,7 +56,7 @@ function VisualizationArea({ zipListState, config }: VisualizationAreaProps) {
         {activeTab === 'conversion' && <ConversionDemo />}
       </div>
 
-      {config.showStatistics && (
+      {showStatistics && config.showStatistics && (
         <div className="viz-footer">
           <StatisticsPanel zipListState={zipListState} />
         </div>
